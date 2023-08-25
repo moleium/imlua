@@ -18,5 +18,9 @@ local buffer_size = 256
 ImGui.Text("Hello from lua")
 ImGui.InputText("##input", buffer, buffer_size)
 
+if ImGui.Button("Click me") then
+    print("Clicked")
+end
+
 window.End()
 ```

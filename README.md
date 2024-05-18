@@ -1,26 +1,12 @@
 # imlua
 
-Few ImGui bindings to lua
-
-## Usage
-
-```cpp
-lua_State* L = luaL_newstate();
-register_imgui_bindings(L);
-```
+Incomplete Lua bindings for Imgui
 
 ```lua
-local window = ImGui.Begin("Demo")
-
-local buffer = "Femboys are hot"
-local buffer_size = 256
-
-ImGui.Text("Hello from lua")
-ImGui.InputText("##input", buffer, buffer_size)
-
-if ImGui.Button("Click me") then
-    print("Clicked")
+if ImGui.BeginWindow("Window") then
+  ImGui.Text("This is a window")
+  if ImGui.Button("hallo") then
+    print("hallo")
+  end
 end
-
-window.End()
 ```

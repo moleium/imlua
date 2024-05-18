@@ -1,6 +1,7 @@
-main.cpp
+build 
+out
+.vs
+.cache
+.clangd
 
-style.h
-imgui.ini
-
-dependencies/
+compile_commands.json

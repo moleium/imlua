@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.10)
+project(imlua)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+add_subdirectory(vendor/lua)
+add_subdirectory(vendor/glfw)
+
+add_library(imgui
+  vendor/imgui/imgui.cpp
+  vendor/imgui/imgui_demo.cpp
+  vendor/imgui/imgui_draw.cpp
+  vendor/imgui/imgui_tables.cpp
+  vendor/imgui/imgui_widgets.cpp
+  vendor/imgui/backends/imgui_impl_glfw.cpp
+  vendor/imgui/backends/imgui_impl_opengl3.cpp
+)
+
+target_include_directories(imgui PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/backends
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include
+)
+
+target_link_libraries(imgui glfw lua)
+
+add_executable(imlua src/main.cpp src/bindings.cpp)
+
+target_include_directories(imlua PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/lua
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/vendor/sol2/include
+)
+
+target_link_libraries(imlua opengl32 imgui)
